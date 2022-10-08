@@ -1,5 +1,7 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using AutoMapper;
+using HoLGame.API;
 using HoLGame.DATA;
 using HoLGame.DATA.Infrastructure;
 using HoLGame.SERVICES;
@@ -23,12 +25,23 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
 builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterType<UnitOfWork<HoLGameContext>>().As<IUnitOfWork<HoLGameContext>>().InstancePerLifetimeScope());
 builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterType<DbFactory<HoLGameContext>>().As<IDbFactory<HoLGameContext>>().InstancePerLifetimeScope());
+builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterType<BLGame>().As<IBLGame>().InstancePerLifetimeScope());
 builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterAssemblyTypes(typeof(SuitRepository).Assembly)
     .Where(t => t.Name.EndsWith("Repository"))
     .AsImplementedInterfaces().InstancePerLifetimeScope());
 builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterAssemblyTypes(typeof(SuitService).Assembly)
     .Where(t => t.Name.EndsWith("Service"))
     .AsImplementedInterfaces().InstancePerLifetimeScope());
+//
+
+//AUTOMAPPER
+var config = new MapperConfiguration(cfg =>
+{
+    cfg.AddProfile(new AutoMapperProfile());
+});
+
+var mapper = config.CreateMapper();
+builder.Services.AddSingleton(mapper);
 //
 
 

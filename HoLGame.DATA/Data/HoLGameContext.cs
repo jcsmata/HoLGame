@@ -20,10 +20,17 @@ namespace HoLGame.DATA
         }
 
         public DbSet<Suit> Suites { get; set; }
+        public DbSet<Card> Cards { get; set; }
+        public DbSet<Deck> Decks { get; set; }
+        public DbSet<Game> Games { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {    
             modelBuilder.Entity<Suit>().ToTable("suite");
+            modelBuilder.Entity<Card>().ToTable("card");
+            modelBuilder.Entity<Deck>().ToTable("deck");
+            modelBuilder.Entity<Game>().ToTable("game");
+
         }
     }
 }
