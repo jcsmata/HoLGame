@@ -25,7 +25,11 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
 builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterType<UnitOfWork<HoLGameContext>>().As<IUnitOfWork<HoLGameContext>>().InstancePerLifetimeScope());
 builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterType<DbFactory<HoLGameContext>>().As<IDbFactory<HoLGameContext>>().InstancePerLifetimeScope());
-builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterType<BLGame>().As<IBLGame>().InstancePerLifetimeScope());
+//builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterType<BLGame>().As<IBLGame>().InstancePerLifetimeScope());
+
+builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterAssemblyTypes(typeof(BLGame).Assembly)
+    .Where(t => t.Name.StartsWith("BL"))
+    .AsImplementedInterfaces().InstancePerLifetimeScope());
 builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterAssemblyTypes(typeof(SuitRepository).Assembly)
     .Where(t => t.Name.EndsWith("Repository"))
     .AsImplementedInterfaces().InstancePerLifetimeScope());

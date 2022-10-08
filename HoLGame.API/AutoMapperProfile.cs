@@ -9,6 +9,7 @@ namespace HoLGame.API
         public AutoMapperProfile()
         {
             CreateMap<GameModel, Game>().ReverseMap();
+            CreateMap<PlayerModel, Player>().ReverseMap();
         }
     }
 }

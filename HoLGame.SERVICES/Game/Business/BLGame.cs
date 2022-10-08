@@ -10,7 +10,7 @@ namespace HoLGame.SERVICES
 {
     public interface IBLGame
     {
-        Task<string> CreateGame(GameModel model);
+        string CreateGame(GameModel game);
     }
 
     public class BLGame : IBLGame
@@ -24,17 +24,17 @@ namespace HoLGame.SERVICES
             this.mapper = mapper;
         }
 
-        public Task<string> CreateGame(GameModel model)
+        public string CreateGame(GameModel gameModel)
         {
             Guid g = Guid.NewGuid();
 
-            var game = mapper.Map<Game>(model);
+            var game = mapper.Map<Game>(gameModel);
             game.Identifier = g.ToString();
 
             gameService.CreateGame(game);
             gameService.SaveGame();
 
-            return Task.FromResult(game.Identifier);
+            return game.Identifier;
         }
     }
 }

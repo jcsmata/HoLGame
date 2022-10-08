@@ -1,5 +1,4 @@
-﻿
-using HoLGame.SERVICES;
+﻿using HoLGame.SERVICES;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,16 +6,18 @@ namespace HoLGame.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GameController : ControllerBase
+    public class PlayerController : ControllerBase
     {
-        private readonly IBLGame blGame;
-        public GameController(IBLGame game)
+        private readonly IBLPlayer blPlayer;
+
+        public PlayerController(IBLPlayer player)
         {
-            this.blGame = game;
+            this.blPlayer = player;
         }
-        [HttpPost("CreateGame")]
+
+        [HttpPost("CreatePlayer")]
         [Consumes("application/json")]
-        public IActionResult CreateGame([FromBody] GameModel game)
+        public IActionResult CreatePlayer([FromBody] PlayerModel player)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -25,20 +26,14 @@ namespace HoLGame.API.Controllers
 
             try
             {
-                output = blGame.CreateGame(game);
+                output = blPlayer.CreatePlayer(player);
             }
-            catch(Exception e) 
+            catch (Exception e)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, e);
             }
 
             return Ok(output);
         }
-
-        //[HttpPost("JoinGame")]
-        //public IActionResult JoinGame([FromBody] GamePlayerModel gamePlayer)
-        //{
-
-        //}
     }
 }
