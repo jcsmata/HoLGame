@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoLGame.API", "HoLGame.API\HoLGame.API.csproj", "{FECF6005-B77B-49C6-A1B0-2117E3EB0551}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoLGame.MODELS", "HoLGame.Model\HoLGame.MODELS.csproj", "{79F767D8-BEFD-4DA1-B869-7594838F9EA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoLGame.DATA", "HoLGame.DATA\HoLGame.DATA.csproj", "{CF751452-4D58-46BF-BD4A-B8CDDD7D3730}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoLGame.SERVICES", "HoLGame.SERVICES\HoLGame.SERVICES.csproj", "{3667E633-6E03-4ECE-B625-98B3766B213F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FECF6005-B77B-49C6-A1B0-2117E3EB0551}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FECF6005-B77B-49C6-A1B0-2117E3EB0551}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FECF6005-B77B-49C6-A1B0-2117E3EB0551}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FECF6005-B77B-49C6-A1B0-2117E3EB0551}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79F767D8-BEFD-4DA1-B869-7594838F9EA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79F767D8-BEFD-4DA1-B869-7594838F9EA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79F767D8-BEFD-4DA1-B869-7594838F9EA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79F767D8-BEFD-4DA1-B869-7594838F9EA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF751452-4D58-46BF-BD4A-B8CDDD7D3730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF751452-4D58-46BF-BD4A-B8CDDD7D3730}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF751452-4D58-46BF-BD4A-B8CDDD7D3730}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF751452-4D58-46BF-BD4A-B8CDDD7D3730}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3667E633-6E03-4ECE-B625-98B3766B213F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3667E633-6E03-4ECE-B625-98B3766B213F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3667E633-6E03-4ECE-B625-98B3766B213F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3667E633-6E03-4ECE-B625-98B3766B213F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E4D99E65-70B9-41FF-9617-7BCAF08C6F60}
+	EndGlobalSection
+EndGlobal
