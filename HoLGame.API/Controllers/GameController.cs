@@ -34,11 +34,5 @@ namespace HoLGame.API.Controllers
 
             return Ok(output);
         }
-
-        //[HttpPost("JoinGame")]
-        //public IActionResult JoinGame([FromBody] GamePlayerModel gamePlayer)
-        //{
-
-        //}
     }
 }

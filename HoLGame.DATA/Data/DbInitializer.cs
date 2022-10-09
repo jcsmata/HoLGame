@@ -21,7 +21,7 @@ namespace HoLGame.DATA
                 {
                     new Suit { SuitName = "Spades", SuitSymbol = "U+2664" },
                     new Suit { SuitName = "Hearts", SuitSymbol = "U+2661" },
-                    new Suit { SuitName = "Diamongs", SuitSymbol = "U+2662" },
+                    new Suit { SuitName = "Diamonds", SuitSymbol = "U+2662" },
                     new Suit { SuitName = "Clubs", SuitSymbol = "U+2667" },
                 };
 

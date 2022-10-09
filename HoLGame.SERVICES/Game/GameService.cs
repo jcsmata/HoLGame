@@ -12,6 +12,8 @@ namespace HoLGame.SERVICES
     public interface IGameService
     {
         void CreateGame(Game game);
+        int? GetMaxNumberOfPlayersInGameByGameIdentifier(string gameIdentifier);
+        Game GetGameByGameIdentifier(string gameIdentifier);
         void SaveGame();
     }
     public class GameService : IGameService
@@ -28,6 +30,16 @@ namespace HoLGame.SERVICES
         public void CreateGame(Game game)
         {
             gameRepository.Add(game);
+        }
+
+        public int? GetMaxNumberOfPlayersInGameByGameIdentifier(string gameIdentifier)
+        {
+            return gameRepository.Get(g => g.Identifier == gameIdentifier)?.NumberPlayers;
+        }
+
+        public Game GetGameByGameIdentifier(string gameIdentifier)
+        {
+            return gameRepository.Get(g => g.Identifier == gameIdentifier);
         }
 
         public void SaveGame()

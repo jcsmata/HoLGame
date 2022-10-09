@@ -10,6 +10,7 @@ namespace HoLGame.API
         {
             CreateMap<GameModel, Game>().ReverseMap();
             CreateMap<PlayerModel, Player>().ReverseMap();
+            CreateMap<GamePlayerJoinModel, GamePlayer>().ReverseMap();
         }
     }
 }

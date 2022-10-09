@@ -10,9 +10,9 @@ namespace HoLGame.API.Controllers
     {
         private readonly IBLPlayer blPlayer;
 
-        public PlayerController(IBLPlayer player)
+        public PlayerController(IBLPlayer blPlayer)
         {
-            this.blPlayer = player;
+            this.blPlayer = blPlayer;
         }
 
         [HttpPost("CreatePlayer")]
@@ -23,6 +23,8 @@ namespace HoLGame.API.Controllers
                 return BadRequest(ModelState);
 
             string output = String.Empty;
+
+            //TODO: Validate duplicate names
 
             try
             {

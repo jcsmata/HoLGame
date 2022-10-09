@@ -33,7 +33,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterAss
 builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterAssemblyTypes(typeof(SuitRepository).Assembly)
     .Where(t => t.Name.EndsWith("Repository"))
     .AsImplementedInterfaces().InstancePerLifetimeScope());
-builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterAssemblyTypes(typeof(SuitService).Assembly)
+builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterAssemblyTypes(typeof(PlayService).Assembly)
     .Where(t => t.Name.EndsWith("Service"))
     .AsImplementedInterfaces().InstancePerLifetimeScope());
 //

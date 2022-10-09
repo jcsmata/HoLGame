@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\HoLGame.COMMONS\HoLGame.COMMONS.csproj" />
-  </ItemGroup>
-
 </Project>

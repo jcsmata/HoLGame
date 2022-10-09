@@ -12,5 +12,8 @@ namespace HoLGame.MODELS
         public string Name { get; set; }
         public int Wins { get; set; }
         public int Losses { get; set; }
+
+        public virtual ICollection<GamePlayer> GamePlayers { get; set; }
+
     }
 }

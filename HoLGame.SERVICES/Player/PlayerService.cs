@@ -14,6 +14,7 @@ namespace HoLGame.SERVICES
     public interface IPlayerService
     {
         void CreatePlayer(Player player);
+        Player GetPlayerByName(string playerName);
         void SavePlayer();
     }
     public class PlayerService : IPlayerService
@@ -30,6 +31,11 @@ namespace HoLGame.SERVICES
         public void CreatePlayer(Player player)
         {
             playerRepository.Add(player);
+        }
+
+        public Player GetPlayerByName(string playerName)
+        {
+            return playerRepository.Get(p => p.Name == playerName);
         }
 
         public void SavePlayer()
