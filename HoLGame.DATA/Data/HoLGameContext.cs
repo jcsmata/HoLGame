@@ -50,6 +50,11 @@ namespace HoLGame.DATA
             modelBuilder.Entity<Deck>().Navigation(d => d.Card).AutoInclude();
             modelBuilder.Entity<Deck>().Navigation(d => d.Suit).AutoInclude();
 
+            modelBuilder.Entity<Play>().Navigation(d => d.Deck).AutoInclude();
+            modelBuilder.Entity<Play>().Navigation(d => d.Game).AutoInclude();
+            modelBuilder.Entity<Play>().Navigation(d => d.Player).AutoInclude();
+
+
 
         }
     }

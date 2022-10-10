@@ -14,7 +14,10 @@ namespace HoLGame.SERVICES
 {
     public interface IBLPlay
     {
+        string GameScore(string gameIdentifier);
         string GetDescriptionFirstCardInPlay(string gameIdentifier);
+        string GetGameFinalResult(string gameIdentifier);
+        bool IsGameFinished(string gameIdentifier);
         string Play(PlayModel play);
         void StartGame(string gameIdentifier);
     }
@@ -65,13 +68,14 @@ namespace HoLGame.SERVICES
         public string Play(PlayModel play)
         {
             var player = playerService.GetPlayerByName(play.playerName);
+            var gameByGameIdentifier = gameService.GetGameByGameIdentifier(play.gameIdentifier);
 
             var playByGameIdentifier = playService.GetPlaysByGameIdentifier(play.gameIdentifier).Where(p => p.PlayerId == null).OrderBy(p => p.Id).Take(2);
 
-            var currentCardInfoByDeck = deckService.GetById(playByGameIdentifier.ElementAt(0).DeckId).Card;
-            var nextCardInfoByDeck = deckService.GetById(playByGameIdentifier.ElementAt(1).DeckId).Card;
+            var currentCardInfoByDeck = deckService.GetById(playByGameIdentifier.ElementAt(0).DeckId);
+            var nextCardInfoByDeck = deckService.GetById(playByGameIdentifier.ElementAt(1).DeckId);
 
-            Enums.Result result = CheckResultForPlay(play.choice, currentCardInfoByDeck, nextCardInfoByDeck);
+            Enums.Result result = CheckResultForPlay(play.choice, currentCardInfoByDeck.Card, nextCardInfoByDeck.Card);
 
             var currentPlay = playByGameIdentifier.ElementAt(0);
             currentPlay.PlayResult = result;
@@ -79,17 +83,61 @@ namespace HoLGame.SERVICES
             currentPlay.PlayerId = player.Id;
 
             playService.UpdatePlay(currentPlay);
+            playService.SavePlay();
 
-            return String.Empty;
+            var isFinalPlay = FinalPlay(play.gameIdentifier);
 
+            return $"The {(isFinalPlay ? "final" : "")} card in {gameByGameIdentifier.Name} is {nextCardInfoByDeck.Card.Name} of {nextCardInfoByDeck.Suit.SuitName}." + (Enums.Result.Win == result ? "Correct!" : "Incorrect!");
+
+        }
+
+        public string GameScore(string gameIdentifier)
+        {
+            var gameByGameIdentifier = gameService.GetGameByGameIdentifier(gameIdentifier);
+
+            var isFinalPlay = FinalPlay(gameIdentifier);
+
+            return $"The {(isFinalPlay ? "final" : "current")} score for {gameByGameIdentifier.Name} is : {CreateGameScoreResult(gameIdentifier)}";
+
+        }
+        
+        public bool IsGameFinished(string gameIdentifier)
+        {
+            return FinalPlay(gameIdentifier);
+        }
+
+        private bool FinalPlay(string gameIdentifier)
+        {
+            return playService.GetPlaysByGameIdentifier(gameIdentifier).Where(p => p.PlayerId != null).Count() == deckService.Count() - 1;
+        }
+
+        private string CreateGameScoreResult(string gameIdentifier)
+        {
+            var gameScoreInfo = playService.GetPlaysByGameIdentifier(gameIdentifier).Where(p => p.PlayResult == Enums.Result.Win)
+                .GroupBy(p => p.Player.Name)
+                .Select(gp => new
+                {
+                    PlayerName = gp.Key,
+                    Wins = gp.Sum(p => (int)p.PlayResult)
+                }).ToList();
+
+
+            return string.Join(",", gameScoreInfo.Select(g => string.Concat(g.PlayerName, ":", g.Wins)));
         }
 
         private Enums.Result CheckResultForPlay(Enums.Choice choice, Card currentCardInfoByDeck, Card nextCardInfoByDeck)
         {
             if (choice == Enums.Choice.Higher && nextCardInfoByDeck.Value >= currentCardInfoByDeck.Value)
                 return Enums.Result.Win;
+            else if (choice == Enums.Choice.Lower && nextCardInfoByDeck.Value < currentCardInfoByDeck.Value)
+                return Enums.Result.Win;
             else
                 return Enums.Result.Lose;
+        }
+
+        public string GetGameFinalResult(string gameIdentifier)
+        {
+            return GameScore(gameIdentifier);
         }
     }
 }

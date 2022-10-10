@@ -10,6 +10,7 @@ namespace HoLGame.SERVICES
 {
     public interface IDeckService
     {
+        int Count();
         IEnumerable<int> GetAllIdsRandom();
         Deck GetById(int id);
     }
@@ -20,6 +21,11 @@ namespace HoLGame.SERVICES
         public DeckService(IDeckRepository deckRepository)
         {
             this.deckRepository = deckRepository;
+        }
+
+        public int Count()
+        {
+            return deckRepository.GetAll().Count();
         }
 
         public IEnumerable<int> GetAllIdsRandom()

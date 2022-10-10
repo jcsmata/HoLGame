@@ -1,5 +1,4 @@
-﻿
-using HoLGame.SERVICES;
+﻿using HoLGame.SERVICES;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,6 +13,7 @@ namespace HoLGame.API.Controllers
         {
             this.blGame = game;
         }
+
         [HttpPost("CreateGame")]
         [Consumes("application/json")]
         public IActionResult CreateGame([FromBody] GameModel game)

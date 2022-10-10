@@ -69,10 +69,22 @@ namespace HoLGame.API.Controllers
             if (blGamePlayer.ValidateGame(play.gameIdentifier))
                 return BadRequest("Game doesn't exist!");
 
-            blPlay.Play(play);
+            //Validates if game has ended
+            if (blPlay.IsGameFinished(play.gameIdentifier))
+                return Ok(blPlay.GetGameFinalResult(play.gameIdentifier));
 
-            return Ok();
+            var result = blPlay.Play(play);
 
+            return Ok(result);
+
+        }
+
+        [HttpGet("GameScore/{gameIdentifier}")]
+        public IActionResult GameScore(string gameIdentifier)
+        {
+            var result = blPlay.GameScore(gameIdentifier);
+
+            return Ok(result);
         }
     }
 }

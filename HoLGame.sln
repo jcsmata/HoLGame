@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HoLGame.SERVICES", "HoLGame
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoLGame.COMMONS", "HoLGame.COMMONS\HoLGame.COMMONS.csproj", "{EFD7457A-C91A-4757-878D-B8CFA272D3FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HoLGame.TESTS", "HoLGame.TESTS\HoLGame.TESTS.csproj", "{79622A54-18AE-4082-999B-A816218D44BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{EFD7457A-C91A-4757-878D-B8CFA272D3FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFD7457A-C91A-4757-878D-B8CFA272D3FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFD7457A-C91A-4757-878D-B8CFA272D3FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79622A54-18AE-4082-999B-A816218D44BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79622A54-18AE-4082-999B-A816218D44BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79622A54-18AE-4082-999B-A816218D44BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79622A54-18AE-4082-999B-A816218D44BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
